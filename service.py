@@ -74,8 +74,7 @@ class PySvc(win32serviceutil.ServiceFramework):
                 # check for device changes in system
                 self.drives.watch()
                 self.process.log_process_handles()
-                time.sleep(self.interval)
-                rc = win32event.WaitForSingleObject(self.hWaitStop, 5000)
+                rc = win32event.WaitForSingleObject(self.hWaitStop, self.interval)
             except Exception,err:
                 servicemanager.LogInfoMsg("Error while running service : %s " % str(err))
 
